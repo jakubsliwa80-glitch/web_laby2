@@ -60,7 +60,18 @@
   })
 
   cw3.addEventListener("click", function() {
-    //TODO
+    fetch('https://jsonplaceholder.typicode.com/posts/1')
+      .then(response => response.json())
+      .then(post => {
+
+        const postDiv = document.createElement('div');
+        postDiv.innerHTML = `
+        <h2>Post #${post.id} Użytkownika ${post.userId} - ${post.title}</h2>
+        <p>${post.body}</p>
+      `;
+        answer.appendChild(postDiv);
+
+      })
   })
 
 })();
