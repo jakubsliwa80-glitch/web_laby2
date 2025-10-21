@@ -33,8 +33,30 @@
       })
   })
 
-  cw2.addEventListener("click", function() {
-    //TODO
+  cw2.addEventListener("click", async function() {
+
+    answer.innerHTML = 'Loading...';
+
+    await new Promise(resolve => setTimeout(resolve, 1000));
+
+    fetch('https://jsonplaceholder.typicode.com/posts')
+      .then(response => response.json())
+      .then(array => {
+
+        answer.innerHTML = '';
+
+        array.forEach(post => {
+          const postDiv = document.createElement('div');
+          postDiv.innerHTML = `
+        <h2>Post #${post.id} Użytkownika ${post.userId} - ${post.title}</h2>
+        <p>${post.body}</p>
+      `;
+          answer.appendChild(postDiv);
+
+
+        });
+
+      })
   })
 
   cw3.addEventListener("click", function() {
